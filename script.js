@@ -65,7 +65,7 @@ $(function(){
 			},
 			{
 				botao: "Procedimento não regulado",
-				condicao: procedimento == "1100000";
+				condicao: procedimento == "1100000",
 				msg: "O procedimento solicitado deve ser agendado diretamente pela Unidade Solicitante, tendo em vista que se trata de não regulado."
 			}
 		];
