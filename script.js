@@ -67,6 +67,21 @@ $(function(){
 				botao: "Procedimento não regulado",
 				condicao: procedimento == "1100000",
 				msg: "O procedimento solicitado deve ser agendado diretamente pela Unidade Solicitante, tendo em vista que se trata de não regulado."
+			},
+			{
+				botao: "Justificar se é rotina",
+				condicao: procedimento == "6400031",
+				msg: "Especificar se é rotina (primeira ou segunda)."
+			},
+			{
+				botao: "Semanas de gestação",
+				condicao: procedimento == "6400031",
+				msg: "Especificar a idade."
+			},
+			{
+				botao: "Transcrição?",
+				condicao: true,
+				msg: "Justificar se é transcrição."
 			}
 		];
 		$('.erroBt').remove();
