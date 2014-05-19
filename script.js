@@ -1,4 +1,4 @@
-function exibirEtapa() {
+Ôªøfunction exibirEtapa() {
 
 }
 
@@ -30,29 +30,29 @@ $(function(){
 		var devEdit = $('textarea[name=justifDevolvido]');
 		var erros;
 		var condicoes = [
-			{   descricao: "… de ITAPEVA?", 
+			{   descricao: "√â de ITAPEVA?", 
 				condicao: cidade == 'ITAPEVA',
-				erro: 'Verificar municÌpio informado ('+cidade+')'
+				erro: 'Verificar munic√≠pio informado ('+cidade+')'
 			},
-			{ descricao: "CID n„o È R68-R69?", 
+			{ descricao: "CID n√£o √© R68-R69?", 
 			  condicao: cid10 != 'R68' && cid10 != 'R69',
-			  erro: 'CONFORME CAPACITA«√O DE 18/10/2013 O CID DEVE SER COMPATÕVEL COM O PROCEDIMENTO SOLICITADO.'
+			  erro: 'CONFORME CAPACITA√á√ÉO DE 18/10/2013 O CID DEVE SER COMPAT√çVEL COM O PROCEDIMENTO SOLICITADO.'
 			}
 		];
 		$('.erroBt').remove();
 		$('#dev').remove();
 		$('#centD').remove();
-		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-RegulaÁ„o</header><div><table><thead><tr><th>Item</th><th>SituaÁ„o</th></tr></thead><tbody></tbody></table></div></article>');
+		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regula√ß√£o</header><div><table><thead><tr><th>Item</th><th>Situa√ß√£o</th></tr></thead><tbody></tbody></table></div></article>');
 		$('div#devolvido').append('<center id="centD"></center>');
-		$('#centD').append('<input type="button"  class="erroBt" msg="CID ('+cid10+') incompatÌvel com a justificativa." value="CID incompatÌvel com a justificativa" />');
+		$('#centD').append('<input type="button"  class="erroBt" msg="CID ('+cid10+') incompat√≠vel com a justificativa." value="CID incompat√≠vel com a justificativa" />');
 		$('#centD').append(' <input type="button" class="erroBt" msg="Informar nome completo do solicitante." value="Nome incompleto do solicitante" />');
-		$('#centD').append(' <input type="button" class="erroBt" msg="Justificar a classificaÁ„o de risco informada." value="ClassificaÁ„o de risco n„o justifica" />');
+		$('#centD').append(' <input type="button" class="erroBt" msg="Justificar a classifica√ß√£o de risco informada." value="Classifica√ß√£o de risco n√£o justifica" />');
 			 $('input.erroBt').click(function() {
 				devEdit.val(devEdit.val() + '- ' + $(this).attr('msg')+'\n');
 			});
 		erros = checarProblemas(condicoes);
 		if(erros.length > 0) {
-		   $('article#dev').append('<input type="button" id="addErros" value="Adicionar estes erros na justif. de DevoluÁ„o" />');
+		   $('article#dev').append('<input type="button" id="addErros" value="Adicionar estes erros na justif. de Devolu√ß√£o" />');
 			$('input#addErros').click(function() {
 					if(devEdit.val().length <= 0) {
 					  devEdit.val(devEdit.val() +'Favor verificar os seguintes itens:\n');
