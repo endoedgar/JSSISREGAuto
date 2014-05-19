@@ -61,7 +61,7 @@ $(function(){
 			{
 				botao: "Falta justificativa",
 				condicao: true,
-				msg: "Conforme capacitação em 26/03/2014, todo o procedimento enviada para a regulação deve conter justificativa com o motivo da solicitação."
+				msg: "Conforme capacitação em 26/03/2014, todo o procedimento enviado para a regulação deve conter justificativa com o motivo da solicitação."
 			}
 		];
 		$('.erroBt').remove();
