@@ -41,14 +41,28 @@ $(function(){
 				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.'
 			}
 		];
+		var botoes = [
+			{
+				botao: "CID incompatível com a justificativa",
+				msg: "CID ("+cid10+") incompatível com a justificativa."
+			},
+			{
+				botao: "Nome incompleto do solicitante",
+				msg: "Informar nome completo do solicitante."
+			},
+			{
+				botao: "Classificação de risco não justifica",
+				msg: "Justificar a classificação de risco informada."
+			}
+		];
 		$('.erroBt').remove();
 		$('#dev').remove();
 		$('#centD').remove();
 		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody></tbody></table></div></article>');
 		$('div#devolvido').append('<center id="centD"></center>');
-		$('#centD').append('<input type="button"  class="erroBt" msg="CID ('+cid10+') incompatível com a justificativa." value="CID incompatível com a justificativa" />');
-		$('#centD').append(' <input type="button" class="erroBt" msg="Informar nome completo do solicitante." value="Nome incompleto do solicitante" />');
-		$('#centD').append(' <input type="button" class="erroBt" msg="Justificar a classificação de risco informada." value="Classificação de risco não justifica" />');
+		$.each(botoes, function() {
+			$('#centD').append('<input type="button"  class="erroBt" msg="'+this.msg+'" value="'+this.botao+'" />');
+		});
 		$('input.erroBt').click(function() {
 			devEdit.val(devEdit.val() + '- ' + $(this).attr('msg')+'\n');
 		});
