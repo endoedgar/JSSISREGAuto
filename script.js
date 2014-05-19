@@ -62,6 +62,11 @@ $(function(){
 				botao: "Falta justificativa",
 				condicao: true,
 				msg: "Conforme capacitação em 26/03/2014, todo o procedimento enviado para a regulação deve conter justificativa com o motivo da solicitação."
+			},
+			{
+				botao: "Procedimento não regulado",
+				condicao: procedimento == "1100000";
+				msg: "O procedimento solicitado deve ser agendado diretamente pela Unidade Solicitante, tendo em vista que se trata de não regulado."
 			}
 		];
 		$('.erroBt').remove();
