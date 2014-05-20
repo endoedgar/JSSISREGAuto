@@ -76,7 +76,7 @@ $(function(){
 			{
 				botao: "Semanas de gestação",
 				condicao: procedimento == "6400031",
-				msg: "Especificar a idade."
+				msg: "Especificar a idade gestacional."
 			},
 			{
 				botao: "Transcrição?",
