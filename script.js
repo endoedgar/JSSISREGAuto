@@ -80,7 +80,7 @@ $(function(){
 			},
 			{
 				botao: "Transcrição?",
-				condicao: true,
+				condicao: procedimento != "6400031",
 				msg: "Justificar se é transcrição."
 			}
 		];
