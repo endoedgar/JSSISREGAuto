@@ -53,7 +53,7 @@ $(function(){
 			{
 				descricao: "Olhar Brasil", 
 				condicao: procedimento != "2300024" || (procedimento == "2300024" && (idade < 3 || idade > 16)),
-				erro: 'Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar brasil pois o paciente está na faixa etaria de 3 a 16 anos.'
+				erro: 'Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar Brasil pois o paciente está na faixa etária de 3 a 16 anos.'
 			}
 		];
 		var botoes = [
@@ -100,7 +100,7 @@ $(function(){
 			{
 				botao: "Olhar Brasil",
 				condicao: procedimento == "2300024",
-				msg: "Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar brasil pois o paciente está na faixa etaria de 3 a 16 anos."
+				msg: "Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar Brasil pois o paciente está na faixa etária de 3 a 16 anos."
 			}
 		];
 		$('.erroBt').remove();
