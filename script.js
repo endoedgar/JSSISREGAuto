@@ -82,6 +82,11 @@ $(function(){
 				botao: "Transcrição?",
 				condicao: procedimento != "6400031",
 				msg: "Justificar se é transcrição."
+			},
+			{
+				botao: "Olhar Brasil",
+				condicao: procedimento != "2300024",
+				msg: "Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar brasil pois o paciente está na faixa etaria de 3 a 16 anos."
 			}
 		];
 		$('.erroBt').remove();
