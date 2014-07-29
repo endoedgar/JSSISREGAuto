@@ -2,6 +2,12 @@
 
 }
 
+function _calculateAge(birthday) { // birthday is a date
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
 function estaOk(condicao)
 {
 	var classe = condicao ? 'auto_ok' : 'auto_erro'
@@ -27,6 +33,9 @@ $(function(){
 	if(document.URL=='http://sisregiiisp.saude.gov.br/cgi-bin/autorizador' && $('textarea[name=justifDevolvido]').length) {
 		var cidade = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
+		var data_nasc_str = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
+		var data_nasc = new Date(data_nasc_str.replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+		var idade = _calculateAge(data_nasc);
 		var procedimento = $('input[name=pa]').val();
 		var devEdit = $('textarea[name=justifDevolvido]');
 		var erros;
@@ -40,6 +49,11 @@ $(function(){
 				descricao: "CID não é R68-R69?", 
 				condicao: cid10 != 'R68' && cid10 != 'R69',
 				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.'
+			},
+			{
+				descricao: "Olhar Brasil", 
+				condicao: procedimento != "2300024" || (procedimento == "2300024" && idade >= 3 && idade <= 16),
+				erro: 'Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar brasil pois o paciente está na faixa etaria de 3 a 16 anos.'
 			}
 		];
 		var botoes = [
