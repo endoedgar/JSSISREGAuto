@@ -34,6 +34,7 @@ $(function(){
 		var cidade = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
 		var data_nasc_str = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
+		var data_desejada = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
 		var data_nasc = new Date(data_nasc_str.replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
 		var idade = _calculateAge(data_nasc);
 		var procedimento = $('input[name=pa]').val();
@@ -54,6 +55,11 @@ $(function(){
 				descricao: "Olhar Brasil", 
 				condicao: procedimento != "2300024" || (procedimento == "2300024" && (idade < 3 || idade > 16)),
 				erro: 'Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar Brasil pois o paciente está na faixa etária de 3 a 16 anos.'
+			},
+			{
+				descricao: "Data Desejada - Laboratório", 
+				condicao: (procedimento != "1100000" && procedimento != "1101000") || (data_desejada.length > 0),
+				erro: 'Informar data desejada.'
 			}
 		];
 		var botoes = [
@@ -101,6 +107,9 @@ $(function(){
 				botao: "Olhar Brasil",
 				condicao: procedimento == "2300024",
 				msg: "Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar Brasil pois o paciente está na faixa etária de 3 a 16 anos."
+			},
+			{
+				
 			}
 		];
 		$('.erroBt').remove();
