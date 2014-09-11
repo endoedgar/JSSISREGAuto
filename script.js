@@ -34,7 +34,7 @@ $(function(){
 		var cidade = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
 		var data_nasc_str = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
-		var data_desejada = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
+		var data_desejada = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
 		var data_nasc = new Date(data_nasc_str.replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
 		var idade = _calculateAge(data_nasc);
 		var procedimento = $('input[name=pa]').val();
