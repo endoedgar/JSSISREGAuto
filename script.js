@@ -51,11 +51,7 @@ $(function(){
 				condicao: cid10 != 'R68' && cid10 != 'R69',
 				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.'
 			},
-			{
-				descricao: "Olhar Brasil", 
-				condicao: procedimento != "2300024" || (procedimento == "2300024" && (idade < 3 || idade > 16)),
-				erro: 'Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar Brasil pois o paciente está na faixa etária de 3 a 16 anos.'
-			},
+
 			{
 				descricao: "Data Desejada - Laboratório", 
 				condicao: (procedimento != "1100000" && procedimento != "1101000") || (data_desejada.length > 0),
@@ -104,12 +100,9 @@ $(function(){
 				msg: "Justificar se é transcrição."
 			},
 			{
-				botao: "Olhar Brasil",
-				condicao: procedimento == "2300024",
-				msg: "Esta solicitação deve ser feita indicando a opção consulta em Oftalmologia - Olhar Brasil pois o paciente está na faixa etária de 3 a 16 anos."
-			},
-			{
-				
+				botao: "OLHAR BRASIL - Falta Número de Convocação",
+				condicao: procedimento == "0701501",
+				msg: "Informar número da convocação feita pelo Departamento de Educação em Saúde conforme Ofício Circular Central de Regulação Ambulatorial de Itapeva - SMSI nº 017/2014."
 			}
 		];
 		$('.erroBt').remove();
