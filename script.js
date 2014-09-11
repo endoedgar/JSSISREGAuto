@@ -31,7 +31,7 @@ function checarProblemas(condicoes) {
 $(function(){
 	$('input.printAutorizacao[name=imprime]').replaceWith('<input type=button value="Imprimir #" onClick="window.print();" >');
 	if(document.URL=='http://sisregiiisp.saude.gov.br/cgi-bin/autorizador' && $('textarea[name=justifDevolvido]').length) {
-		var cidade = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
+		var cidade = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
 		var data_nasc_str = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
 		var data_desejada = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
