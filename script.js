@@ -118,6 +118,14 @@ $(function(){
 		$('input.erroBt').click(function() {
 			devEdit.val(devEdit.val() + '- ' + $(this).attr('msg')+'\n');
 		});
+		if(procedimento == "0703531") { // AVISO SOBRE O USO DE VAGAS DE GERIATRIA DE RETORNO COMO PRIMEIRA VEZ
+			$('input[name=status]').click(function() {
+				$('.avisoGeriatria').remove();
+				if($('input[name=status]:checked').val() == 'A') {
+					$('input[name=status]').parent().parent().after('<tr class="avisoGeriatria"><td colspan=3><div class="auto_erro">Por gentileza, não agendar primeira consulta em vagas de retorno.</div></td></tr>');
+				}
+			});
+		}
 		erros = checarProblemas(condicoes);
 		if(erros.length > 0) {
 			$('article#dev').append('<input type="button" id="addErros" value="Adicionar estes erros na justif. de Devolução" />');
