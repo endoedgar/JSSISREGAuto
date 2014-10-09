@@ -122,7 +122,7 @@ $(function(){
 			$('input[name=status]').click(function() {
 				$('.avisoGeriatria').remove();
 				if($('input[name=status]:checked').val() == 'A') {
-					$('input[name=status]').parent().parent().after('<tr class="avisoGeriatria"><td colspan=3><div class="auto_erro">Por gentileza, não agendar primeira consulta em vagas de retorno.</div></td></tr>');
+					$('<tr class="avisoGeriatria"><td colspan=3><div class="auto_erro">Por gentileza, não agendar primeira consulta em vagas de retorno.</div></td></tr>').hide().insertAfter($('input[name=status]').parent().parent()).fadeIn();
 				}
 			});
 		}
