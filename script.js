@@ -2,6 +2,32 @@
 
 }
 
+function getAge(fromdate, todate){
+    if(todate) todate= new Date(todate);
+    else todate= new Date();
+
+    var age= [], fromdate= new Date(fromdate),
+    y= [todate.getFullYear(), fromdate.getFullYear()],
+    ydiff= y[0]-y[1],
+    m= [todate.getMonth(), fromdate.getMonth()],
+    mdiff= m[0]-m[1],
+    d= [todate.getDate(), fromdate.getDate()],
+    ddiff= d[0]-d[1];
+
+    if(mdiff < 0 || (mdiff=== 0 && ddiff<0))--ydiff;
+    if(mdiff<0) mdiff+= 12;
+    if(ddiff<0){
+        fromdate.setMonth(m[1]+1, 0);
+        ddiff= fromdate.getDate()-d[1]+d[0];
+        --mdiff;
+    }
+    if(ydiff> 0) age.push(ydiff+ ' ano'+(ydiff> 1? 's ':' '));
+    if(mdiff> 0) age.push(mdiff+ ' mês'+(mdiff> 1? 'es':''));
+    if(ddiff> 0) age.push(ddiff+ ' dia'+(ddiff> 1? 's':''));
+    if(age.length>1) age.splice(age.length-1,0,' e ');    
+    return age.join('');
+}
+
 function _calculateAge(birthday) { // birthday is a date
     var ageDifMs = Date.now() - birthday.getTime();
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -56,6 +82,11 @@ $(function(){
 				descricao: "Data Desejada - Laboratório", 
 				condicao: (procedimento != "1100000" && procedimento != "1101000") || (data_desejada.length > 0),
 				erro: 'Informar data desejada.'
+			},
+			{
+				descricao: "Idade: " + getAge(data_nasc), 
+				condicao: true,
+				erro: 'Não há erros.'
 			}
 		];
 		var botoes = [
