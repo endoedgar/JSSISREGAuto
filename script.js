@@ -6,7 +6,7 @@ function getAge(fromdate, todate){
     if(todate) todate= new Date(todate);
     else todate= new Date();
 
-    var age= [], fromdate= new Date(fromdate),
+    var age= [],
     y= [todate.getFullYear(), fromdate.getFullYear()],
     ydiff= y[0]-y[1],
     m= [todate.getMonth(), fromdate.getMonth()],
@@ -22,7 +22,7 @@ function getAge(fromdate, todate){
         --mdiff;
     }
     if(ydiff> 0) age.push(ydiff+ ' ano'+(ydiff> 1? 's ':' '));
-    if(mdiff> 0) age.push(mdiff+ ' mês'+(mdiff> 1? 'es':''));
+    if(mdiff> 0) age.push(mdiff+ ' mes'+(mdiff> 1? 'es':''));
     if(ddiff> 0) age.push(ddiff+ ' dia'+(ddiff> 1? 's':''));
     if(age.length>1) age.splice(age.length-1,0,' e ');    
     return age.join('');
@@ -59,9 +59,9 @@ $(function(){
 	if(document.URL.indexOf('http://sisregiiisp.saude.gov.br/cgi-bin/autorizador')==0 && $('textarea[name=justifDevolvido]').length) {
 		var cidade = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
-		var data_nasc_str = $('table.table_listagem:nth-child(8) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
+		var data_nasc_str = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
 		var data_desejada = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
-		var data_nasc = new Date(data_nasc_str.replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+    var data_nasc = new Date(data_nasc_str.replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
 		var idade = _calculateAge(data_nasc);
 		var procedimento = $('input[name=pa]').val();
 		var devEdit = $('textarea[name=justifDevolvido]');
@@ -77,16 +77,10 @@ $(function(){
 				condicao: cid10 != 'R68' && cid10 != 'R69',
 				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.'
 			},
-
 			{
 				descricao: "Data Desejada - Laboratório", 
 				condicao: (procedimento != "1100000" && procedimento != "1101000") || (data_desejada.length > 0),
 				erro: 'Informar data desejada.'
-			},
-			{
-				descricao: "Idade: " + getAge(data_nasc), 
-				condicao: true,
-				erro: 'Não há erros.'
 			}
 		];
 		var botoes = [
@@ -139,7 +133,7 @@ $(function(){
 		$('.erroBt').remove();
 		$('#dev').remove();
 		$('#centD').remove();
-		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody></tbody></table></div></article>');
+		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article>');
 		$('div#devolvido').append('<center id="centD"></center>');
 		$.each(botoes, function() {
 			if(this.condicao) {
