@@ -168,7 +168,7 @@ $(function(){
 		$("#dialog").dialog({
 			autoOpen: false,
 			modal: true,
-			width: 800,
+			width: 850,
 			height: 600,
 			open: function(ev, ui){
 				$('#myIframe').attr('src', 'http://sisregiiisp.saude.gov.br/cgi-bin/cons_verificar?ETAPA=LISTAR&pg=0&total=&ordem=&programa=CONS_VERIFICAR&codigo_solicicitacao=&co_solic=&cns='+cns+'&dt_inicial=&dt_final=&justificativa=');
