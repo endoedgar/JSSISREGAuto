@@ -58,6 +58,7 @@ $(function(){
 	if(document.URL.indexOf('http://sisregiiisp.saude.gov.br/cgi-bin/autorizador')==0 && $('textarea[name=justifDevolvido]').length) {
 		var cidade = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
+		var cns = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)').text();
 		var data_nasc_str = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
 		var data_desejada = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
     var data_nasc = new Date(data_nasc_str.replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
@@ -132,7 +133,7 @@ $(function(){
 		$('.erroBt').remove();
 		$('#dev').remove();
 		$('#centD').remove();
-		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article>');
+		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article><div id="dialog"><iframe id="myIframe" src=""></iframe></div><button id="dialogBtn">Histórico</button>');
 		$('div#devolvido').append('<center id="centD"></center>');
 		$.each(botoes, function() {
 			if(this.condicao) {
@@ -163,5 +164,18 @@ $(function(){
 				});
 			});
 		} // fim
+
+		$("#dialog").dialog({
+			autoOpen: false,
+			modal: true,
+			height: 600,
+			open: function(ev, ui){
+				$('#myIframe').attr('src', 'http://sisregiiisp.saude.gov.br/cgi-bin/cons_verificar?ETAPA=LISTAR&pg=0&total=&ordem=&programa=CONS_VERIFICAR&codigo_solicicitacao=&co_solic=&cns='+cns+'&dt_inicial=&dt_final=&justificativa=');
+			}
+		});
+
+		$('#dialogBtn').click(function(){
+			$('#dialog').dialog('open');
+		});
 	}
 });
