@@ -54,8 +54,35 @@ function checarProblemas(condicoes) {
 	return ret;
 }
 
+function diaUtil(dataAtual, contagem) {
+	var dat = new Date(dataAtual);
+	for(var i = 0; i < contagem;) {
+		dat.setDate(dat.getDate() + 1);
+		if(dat.getDay() != 0 && dat.getDay() != 6) // não é sábado e nem domingo
+			++i;
+	}
+	return dat;
+}
+
+
 $(function(){
-	if(document.URL.indexOf('http://sisregiiisp.saude.gov.br/cgi-bin/autorizador')==0 && $('textarea[name=justifDevolvido]').length) {
+	if(document.URL.indexOf('sisregiiisp.saude.gov.br/cgi-bin/marcar')==0) {
+		var currentTime = new Date();
+		var daquiTantosDias = diaUtil(currentTime, 5);
+
+		$(".datepicker").datepicker( "option", "minDate", daquiTantosDias );
+
+		$('input[name="dt_desejada"]').change(function(){
+			var strSelecionada = $(this).val();
+			var selecionada = new Date(strSelecionada);
+			if(strSelecionada.length > 0) {
+				if(selecionada < daquiTantosDias) {
+					$(this).val("");
+					alert("Verificar quadro de avisos em tela inicial.");
+				}
+			}
+		});
+	} else if(document.URL.indexOf('http://sisregiiisp.saude.gov.br/cgi-bin/autorizador')==0 && $('textarea[name=justifDevolvido]').length) {
 		var cidade = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
 		var cns = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)').text();
