@@ -66,7 +66,7 @@ function diaUtil(dataAtual, contagem) {
 
 
 $(function(){
-	if(document.URL.indexOf('sisregiiisp.saude.gov.br/cgi-bin/marcar')==0) {
+	if(document.URL.indexOf('http://sisregiiisp.saude.gov.br/cgi-bin/marcar')==0) {
 		var currentTime = new Date();
 		var daquiTantosDias = diaUtil(currentTime, 5);
 
