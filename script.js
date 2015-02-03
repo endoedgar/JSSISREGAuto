@@ -53,7 +53,7 @@ function checarProblemas(condicoes) {
 	var ret = [];
 	$.each(condicoes, function() {
 		if(!this.condicao)
-		ret.push(this.erro);
+		ret.push(this);
 		adicionaLinha(this.descricao, this.condicao, this.erro);
 	});
 	return ret;
@@ -105,25 +105,25 @@ $(function(){
 				descricao: "É de ITAPEVA?", 
 				condicao: cidade == 'ITAPEVA',
 				erro: 'Verificar município informado ('+cidade+')',
-        destino: 'negado'
+        destino: "negado"
 			},
 			{
 				descricao: "CID não é R68-R69?", 
 				condicao: cid10 != 'R68' && cid10 != 'R69',
 				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.',
-        destino: 'devolvido'
+        destino: "devolvido"
 			},
 			{
 				descricao: "Data Desejada - Laboratório", 
 				condicao: (procedimento != "1100000" && procedimento != "1101000") || (data_desejada.length > 0),
 				erro: 'Informar data desejada.',
-        destino: 'devolvido'
+        destino: "devolvido"
 			},
 			{
 				descricao: "Solicitante cadastrado?",
 				condicao: solicitanteCPF.length > 0,
 				erro: "Solicitante não cadastrado, por gentileza justificar.",
-        destino: 'devolvido'
+        destino: "devolvido"
 			}
 		];
 		var botoes = [
@@ -246,7 +246,7 @@ $(function(){
 				 vdestino = this.destino;
 		 });
 
-			alert(vdestino);
+		alert(vdestino);
       
 		  vdestino = $('textarea[name=justif'+ capitaliseFirstLetter(vdestino) +']');
 			if(vdestino.val().length <= 0) {
@@ -254,7 +254,7 @@ $(function(){
 				}
 				var i = 0;
 				$.each(erros, function() {
-					vdestino.val(vdestino.val() + '- ' + this+'\n');
+					vdestino.val(vdestino.val() + '- ' + this.erro+'\n');
 				});
 			});
 		} // fim
