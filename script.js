@@ -137,7 +137,7 @@ $(function(){
 				secao: "devolvido",
 				botao: "Nome incompleto do solicitante",
 				condicao: true,
-				msg: "Informar nome completo do solicitante. (Informado: " + solicitante + ")"
+				msg: "-"
 			},
 			{
 				secao: "devolvido",
@@ -232,16 +232,16 @@ $(function(){
 		erros = checarProblemas(condicoes);
 		if(erros.length > 0) {
 			$('article#dev').append('<input type="button" id="addErros" value="Adicionar estes erros na justif. de Devolução" />');
-      var vdestino = 'devolvido';
-      $.each(erros, function() {
-        if(this.destino != "devolvido")
-          vdestino = this.destino;
-      });
       
-      vdestino = $('textarea[name=justif'+ capitaliseFirstLetter(vdestino) +']');
+		$('input#addErros').click(function() {
+		var vdestino = "devolvido";
+		 $.each(erros, function() {
+			 if(this.destino != "devolvido")
+				 vdestino = this.destino;
+		 });
       
-			$('input#addErros').click(function() {
-				if(vdestino.val().length <= 0) {
+		  vdestino = $('textarea[name=justif'+ capitaliseFirstLetter(vdestino) +']');
+			if(vdestino.val().length <= 0) {
 					vdestino.val(vdestino.val() +'Favor verificar os seguintes itens:\n');
 				}
 				var i = 0;
