@@ -2,6 +2,11 @@
 
 }
 
+function capitaliseFirstLetter(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function getAge(fromdate, todate){
     if(todate) todate= new Date(todate);
     else todate= new Date();
@@ -85,6 +90,8 @@ $(function(){
 	} else if(document.URL.indexOf('http://sisregiiisp.saude.gov.br/cgi-bin/autorizador')==0 && $('textarea[name=justifDevolvido]').length) {
 		var cidade = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)').text();
 		var cid10 = $('input[name=cid_10]').val();
+		var solicitante = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(18) > td:nth-child(2)').text();
+		var solicitanteCPF = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(18) > td:nth-child(1)').text();
 		var cns = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)').text();
 		var data_nasc_str = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(1)').text();
 		var data_desejada = $('table.table_listagem:nth-child(7) > tbody:nth-child(1) > tr:nth-child(23) > td:nth-child(2)').text();
@@ -97,78 +104,122 @@ $(function(){
 			{
 				descricao: "É de ITAPEVA?", 
 				condicao: cidade == 'ITAPEVA',
-				erro: 'Verificar município informado ('+cidade+')'
+				erro: 'Verificar município informado ('+cidade+')',
+        destino: 'negado'
 			},
 			{
 				descricao: "CID não é R68-R69?", 
 				condicao: cid10 != 'R68' && cid10 != 'R69',
-				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.'
+				erro: 'CONFORME CAPACITAÇÃO DE 18/10/2013 O CID DEVE SER COMPATÍVEL COM O PROCEDIMENTO SOLICITADO.',
+        destino: 'devolvido'
 			},
 			{
 				descricao: "Data Desejada - Laboratório", 
 				condicao: (procedimento != "1100000" && procedimento != "1101000") || (data_desejada.length > 0),
-				erro: 'Informar data desejada.'
+				erro: 'Informar data desejada.',
+        destino: 'devolvido'
+			},
+			{
+				descricao: "Solicitante cadastrado?",
+				condicao: solicitanteCPF.length > 0,
+				erro: "Solicitante não cadastrado, por gentileza justificar.",
+        destino: 'devolvido'
 			}
 		];
 		var botoes = [
 			{
+				secao: "devolvido",
 				botao: "CID incompatível com a justificativa",
 				condicao: true,
 				msg: "CID ("+cid10+") incompatível com a justificativa."
 			},
 			{
+				secao: "devolvido",
 				botao: "Nome incompleto do solicitante",
 				condicao: true,
-				msg: "Informar nome completo do solicitante."
+				msg: "Informar nome completo do solicitante. (Informado: " + solicitante + ")"
 			},
 			{
+				secao: "devolvido",
 				botao: "Classificação de risco não justifica",
 				condicao: true,
 				msg: "Justificar a classificação de risco informada."
 			},
 			{
+				secao: "devolvido",
 				botao: "Falta justificativa",
 				condicao: true,
 				msg: "Conforme capacitação em 26/03/2014, todo o procedimento enviado para a regulação deve conter justificativa com o motivo da solicitação."
 			},
 			{
+				secao: "devolvido",
 				botao: "Procedimento não regulado",
 				condicao: procedimento == "1100000",
 				msg: "O procedimento solicitado deve ser agendado diretamente pela Unidade Solicitante, tendo em vista que se trata de não regulado."
 			},
 			{
+				secao: "devolvido",
 				botao: "Justificar se é rotina",
 				condicao: procedimento == "6400031",
 				msg: "Especificar se é rotina (primeira ou segunda)."
 			},
 			{
+				secao: "devolvido",
 				botao: "Semanas de gestação",
 				condicao: procedimento == "6400031",
 				msg: "Especificar a idade gestacional."
 			},
 			{
+				secao: "devolvido",
 				botao: "Transcrição?",
 				condicao: procedimento != "6400031",
 				msg: "Justificar se é transcrição."
 			},
 			{
+				secao: "devolvido",
 				botao: "OLHAR BRASIL - Falta Número de Convocação",
 				condicao: procedimento == "0701501",
 				msg: "Informar número da convocação feita pelo Departamento de Educação em Saúde conforme Ofício Circular Central de Regulação Ambulatorial de Itapeva - SMSI nº 017/2014."
+			},
+			{
+				secao: "pendente",
+				botao: "Solicito AM",
+				condicao: true,
+				msg: "Solicito AM"
+			},
+			{
+				secao: "pendente",
+				botao: "Solicito AM CID",
+				condicao: true,
+				msg: "Solicito AM CID "+ cid10 +" incompatível"
 			}
+      
 		];
 		$('.erroBt').remove();
 		$('#dev').remove();
-		$('#centD').remove();
+
+		$('#centdevolvido').remove();
+		$('#centnegado').remove();
+		$('#centpendente').remove();
+
 		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article><div id="dialog"><iframe id="myIframe" src=""></iframe></div><button id="dialogBtn">Histórico</button>');
-		$('div#devolvido').append('<center id="centD"></center>');
+		
+		$('div#devolvido').append('<center id="centdevolvido"></center>');
+		$('div#negado').append('<center id="centnegado"></center>');
+		$('div#pendente').append('<center id="centpendente"></center>');
+		
 		$.each(botoes, function() {
 			if(this.condicao) {
-				$('#centD').append('<input type="button"  class="erroBt" msg="'+this.msg+'" value="'+this.botao+'" />');
+				var secao = 'devolvido';
+				if(this.secao != 'undefined')
+					secao = this.secao;
+				$('#cent'+secao).append('<input type="button"  class="erroBt" msg="'+this.msg+'" value="'+this.botao+'" secao="'+secao+'"/>');
 			}
 		});
+
 		$('input.erroBt').click(function() {
-			devEdit.val(devEdit.val() + '- ' + $(this).attr('msg')+'\n');
+			var onde = $('textarea[name=justif'+ capitaliseFirstLetter($(this).attr('secao')) +']');
+			onde.val(onde.val() + '- ' + $(this).attr('msg')+'\n');
 		});
 		if(procedimento == "0703531") { // AVISO SOBRE O USO DE VAGAS DE GERIATRIA DE RETORNO COMO PRIMEIRA VEZ
 			$('input[name=status]').click(function() {
@@ -181,13 +232,21 @@ $(function(){
 		erros = checarProblemas(condicoes);
 		if(erros.length > 0) {
 			$('article#dev').append('<input type="button" id="addErros" value="Adicionar estes erros na justif. de Devolução" />');
+      var vdestino = 'devolvido';
+      $.each(erros, function() {
+        if(this.destino != "devolvido")
+          vdestino = this.destino;
+      });
+      
+      vdestino = $('textarea[name=justif'+ capitaliseFirstLetter(vdestino) +']');
+      
 			$('input#addErros').click(function() {
-				if(devEdit.val().length <= 0) {
-					devEdit.val(devEdit.val() +'Favor verificar os seguintes itens:\n');
+				if(vdestino.val().length <= 0) {
+					vdestino.val(vdestino.val() +'Favor verificar os seguintes itens:\n');
 				}
 				var i = 0;
 				$.each(erros, function() {
-					devEdit.val(devEdit.val() + '- ' + this+'\n');
+					vdestino.val(vdestino.val() + '- ' + this+'\n');
 				});
 			});
 		} // fim
