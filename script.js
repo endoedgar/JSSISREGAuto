@@ -192,6 +192,12 @@ $(function(){
 				botao: "Solicito AM CID",
 				condicao: true,
 				msg: "Solicito AM CID "+ cid10 +" incompatível"
+			},
+			{
+				secao: "pendente",
+				botao: "Autorizado - Porém sem vagas",
+				condicao: true,
+				msg: "Autorizado, porém sem vagas"
 			}
       
 		];
@@ -239,6 +245,8 @@ $(function(){
 			 if(this.destino != "devolvido")
 				 vdestino = this.destino;
 		 });
+
+			alert(vdestino);
       
 		  vdestino = $('textarea[name=justif'+ capitaliseFirstLetter(vdestino) +']');
 			if(vdestino.val().length <= 0) {
