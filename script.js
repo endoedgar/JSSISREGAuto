@@ -135,9 +135,9 @@ $(function(){
 			},
 			{
 				secao: "devolvido",
-				botao: "Nome incompleto do solicitante",
+				botao: "Justificar envio à regulação (AZUL)",
 				condicao: true,
-				msg: "-"
+				msg: "Justificar envio à regulação tendo em vista tratar-se de procedimento não regulado e estar classificado pela unidade como eletivo (AZUL)"
 			},
 			{
 				secao: "devolvido",
@@ -245,8 +245,6 @@ $(function(){
 			 if(this.destino != "devolvido")
 				 vdestino = this.destino;
 		 });
-
-		alert(vdestino);
       
 		  vdestino = $('textarea[name=justif'+ capitaliseFirstLetter(vdestino) +']');
 			if(vdestino.val().length <= 0) {
