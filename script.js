@@ -121,7 +121,7 @@ $(function(){
 			},
 			{
 				descricao: "Solicitante cadastrado?",
-				condicao: solicitanteCPF == "NAO CADASTRADO",
+				condicao: solicitanteCPF != "NAO CADASTRADO",
 				erro: "Solicitante não cadastrado, por gentileza justificar.",
         destino: "devolvido"
 			}
