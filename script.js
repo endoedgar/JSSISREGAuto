@@ -213,7 +213,7 @@ $(function(){
 		$('#centnegado').remove();
 		$('#centpendente').remove();
 
-		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article><div id="dialog"><iframe id="myIframe" src=""></iframe></div><input type="button" id="dialogBtn" value="Histórico" />');
+		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div><input type="button" id="dialogBtn" value="Histórico" /></article><div id="dialog"><iframe id="myIframe" src=""></iframe></div>');
 		
 		$('div#devolvido').append('<center id="centdevolvido"></center>');
 		$('div#negado').append('<center id="centnegado"></center>');
