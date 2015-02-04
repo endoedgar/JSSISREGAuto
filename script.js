@@ -201,6 +201,11 @@ $(function(){
 			}
       
 		];
+    
+    $('#btAM').remove();
+    
+    $('<input type="button" id="btAM" value="AM"/>').insertAfter('table.table_listagem:nth-child(33) > tbody:nth-child(1) > tr:nth-child(9) > td:nth-child(1) > input:nth-child(1)');
+    
 		$('.erroBt').remove();
 		$('#dev').remove();
 
@@ -208,7 +213,7 @@ $(function(){
 		$('#centnegado').remove();
 		$('#centpendente').remove();
 
-		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article><div id="dialog"><iframe id="myIframe" src=""></iframe></div><button id="dialogBtn">Histórico</button>');
+		$('table.table_listagem:nth-child(1)').before('<article id="dev"><header>AUTO-Regulação</header><div><table><thead><tr><th>Item</th><th>Situação</th></tr></thead><tbody><tr><td>Idade:</td><td class="auto_ok">'+ getAge(data_nasc) +'</td></tr></tbody></table></div></article><div id="dialog"><iframe id="myIframe" src=""></iframe></div><input type="button" id="dialogBtn" value="Histórico" />');
 		
 		$('div#devolvido').append('<center id="centdevolvido"></center>');
 		$('div#negado').append('<center id="centnegado"></center>');
@@ -276,6 +281,12 @@ $(function(){
 
 		$('#dialogBtn').click(function(){
 			$('#dialog').dialog('open');
+		});
+    
+		$('#btAM').click(function(){
+			$('textarea[name=ds_justificativa_risco]').val("AM");
+			$("#id_sub_clas1").attr('checked',true);
+			Priorizar();
 		});
 	}
 });
