@@ -273,7 +273,7 @@ $(function(){
 				ifr.onload=function(){
 					$('h1', $( "#myIframe" ).contents()).remove();
 					$('.table_listagem', $( "#myIframe" ).contents()).remove();
-					$('center > table:nth-child(4)', $( "#myIframe" ).contents()).remove();
+					$('center > table:nth-child(4) > tr:nth-child(1)', $( "#myIframe" ).contents()).remove();
    				};
 				
 			}
