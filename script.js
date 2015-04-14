@@ -271,9 +271,9 @@ $(function(){
 				$('#myIframe').attr('src', 'http://sisregiiisp.saude.gov.br/cgi-bin/cons_verificar?ETAPA=LISTAR&pg=0&total=&ordem=3&programa=CONS_VERIFICAR&codigo_solicicitacao=&co_solic=&cns='+cns+'&dt_inicial=&dt_final=&justificativa=');
 				var ifr=document.getElementById('myIframe');
 				ifr.onload=function(){
-					$('h1', $( "#myIframe" ).contents()).remove();
-					$('.table_listagem', $( "#myIframe" ).contents()).remove();
-					$('center > table:nth-child(4) > tr:nth-child(1)', $( "#myIframe" ).contents()).remove();
+					$('h1', $( "#myIframe" ).contents()).hide();
+					$('.table_listagem', $( "#myIframe" ).contents()).hide();
+					$('center > table:nth-child(4) > tr:nth-child(1)', $( "#myIframe" ).contents()).hide();
    				};
 				
 			}
