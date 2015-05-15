@@ -289,4 +289,14 @@ $(function(){
 			Priorizar();
 		});
 	}
+
+/* hotfix 001 - lab são lucas */
+$(document).ready(function() {
+var content = document.body.innerHTML.toString();
+var hasText = content.indexOf("LABORATORIO SAO LUCAS ITAPEVA")!==-1 && content;
+if(hasText && content !== null){
+  $('#area').show();
+}
+});
+
 });
