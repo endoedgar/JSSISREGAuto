@@ -1,0 +1,42 @@
+article#dev {
+    margin: 0 auto;
+    width: 30%;
+    border: 1px solid;
+    padding: 10px;
+}
+article#dev header {
+    text-align: center;
+    font-weight: bold;
+}
+.auto_erro, .auto_ok {
+    font-weight: bold;
+}
+.auto_erro {
+    color: red;
+}
+.auto_ok {
+    color: DarkGreen;
+}
+#myIframe{
+  width: 800px;
+  height: 580px;
+}
+
+div.niceWarn {
+	text-align: justify;
+    margin: 0 auto;
+    width: 300px;
+    border: 1px solid;
+    padding: 10px;
+	
+
+background: #8e9eab; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+}
+
+.destacar {
+	font-weight: bold;
+	text-decoration: underline;
+}
